@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def welcomeScreen(request):
+    return render(request, 'rejestrAwarii/welcomeScreen.html', {})
