@@ -19,13 +19,17 @@ class Awaria(models.Model):
         ("W toku", "W toku"),
         ("Zakończone", "Zakończone")
     ]
-    maszyna = models.CharField(choices=Maszyny, blank=False, max_length=30)
-    opis_userki = models.TextField(blank=False)
-    zgłaszający = models.CharField(blank=False, max_length=40)
-    data = models.DateTimeField(default=now, blank=False)
-    stopień_alertu = models.CharField(max_length=50,
-                                      blank=False, help_text="3 - maszyna nie działa, 2 - zagrożone poprawne działanie maszyny, 1 - rzecz do zrobienia")
+    Alerty = [
+        ("1", "1"),
+        ("2", "2"),
+        ("3", "3")
+    ]
+    maszyna = models.CharField(choices=Maszyny, max_length=30)
+    opis_usterki = models.TextField()
+    zgłaszający = models.CharField(max_length=40)
+    data = models.DateTimeField(default=now)
+    stopień_alertu = models.CharField(max_length=50, choices=Alerty)
     status = models.CharField(
-        choices=Statusy, default="W toku", blank=False, max_length=20)
+        choices=Statusy, default="W toku", max_length=20)
     naprawił = models.CharField(max_length=40)
     uwagi = models.TextField()

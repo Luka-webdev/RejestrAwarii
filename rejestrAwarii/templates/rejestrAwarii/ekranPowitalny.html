@@ -21,7 +21,11 @@
     </header>
     <section class="d-flex flex-column">
       <button class="btn btn-danger m-1">
-        <a href="{% url 'nowaAwaria' %}">Nowe zgłoszenie</a>
+        <a
+          href="{% url 'nowaAwaria' %}"
+          class="link-underline link-underline-opacity-0"
+          >Nowe zgłoszenie</a
+        >
       </button>
       <button class="btn btn-warning m-1">W toku</button>
       <button class="btn btn-success m-1">Zakończone</button>
