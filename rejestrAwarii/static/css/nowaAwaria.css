@@ -1,3 +1,6 @@
 .errorlist > * {
   color: yellow;
 }
+textarea {
+  rows: "6";
+}

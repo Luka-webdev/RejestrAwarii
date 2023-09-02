@@ -16,3 +16,8 @@ def nowaAwaria(request):
             form.save()
             return redirect('ekranPowitalny')
     return render(request, 'rejestrAwarii/nowaAwaria.html', {'form': form})
+
+
+def wToku(request):
+    wpisy = Awaria.objects.all()
+    return render(request, 'rejestrAwarii/wToku.html', {'wpisy': wpisy})

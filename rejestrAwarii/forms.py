@@ -7,6 +7,10 @@ class AwariaForm(forms.ModelForm):
 
     class Meta:
         model = Awaria
+        widgets = {
+            'opis_usterki': forms.Textarea(attrs={'rows': 4, 'cols': 50}),
+            'uwagi': forms.Textarea(attrs={'rows': 4, 'cols': 50}),
+        }
         fields = "__all__"
 
     def __init__(self, *args, **kwargs):
@@ -21,7 +25,3 @@ class AwariaForm(forms.ModelForm):
         if dane['status'] == "W toku" and (dane['naprawił'] != "" or dane['uwagi'] != ""):
             raise ValidationError(
                 "Jeżeli pole 'Status' ma wartość 'W toku' to pola 'Naprawił' i 'Uwagi' muszą być puste.")
-            # self.add_error(
-            #     "naprawił", "Nie możesz wypełnić tego pola jeżeli pole Status ma wartość 'W toku'.")
-            # self.add_error(
-            #     "uwagi", "Nie możesz wypełnić tego pola jeżeli pole Status ma wartość 'W toku'.")
