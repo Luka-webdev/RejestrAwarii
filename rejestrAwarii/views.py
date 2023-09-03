@@ -19,7 +19,7 @@ def nowaAwaria(request):
 
 
 def wToku(request):
-    wpisy = Awaria.objects.all()
+    wpisy = Awaria.objects.filter(status="W toku")
     return render(request, 'rejestrAwarii/wToku.html', {'wpisy': wpisy})
 
 
@@ -33,3 +33,8 @@ def edycjaWpisu(request, pk):
             form.save()
             return redirect('wToku')
     return render(request, 'rejestrAwarii/edycjaWpisu.html', {'wpis': wpis, 'form': form})
+
+
+def zakonczone(request):
+    wpisy = Awaria.objects.filter(status="Zakończone")
+    return render(request, 'rejestrAwarii/zakończone.html', {'wpisy': wpisy})
