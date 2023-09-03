@@ -23,8 +23,7 @@
           <th scope="col">Data</th>
           <th scope="col">Stopień_alertu</th>
           <th scope="col">Status</th>
-          <th scope="col">Naprawił</th>
-          <th scope="col">Uwagi</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -36,8 +35,7 @@
           <td>{{wpis.data}}</td>
           <td>{{wpis.stopień_alertu}}</td>
           <td>{{wpis.status}}</td>
-          <td>{{wpis.naprawił}}</td>
-          <td>{{wpis.uwagi}}</td>
+          <td><a href="{% url 'edycjaWpisu' pk=wpis.id %}">Edytuj</a></td>
         </tr>
         {% endfor %}
       </tbody>

@@ -1,0 +1,28 @@
+{% load static %}
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rejestr awariit</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="bg-success">
+    <form
+      action="{% url 'edycjaWpisu' pk=wpis.id %}"
+      method="post"
+      class="d-flex flex-column align-items-center"
+    >
+      {% csrf_token %}
+      <table class="fs-4 m-3">
+        {{form.as_table}}
+      </table>
+      <button name="submit" class="btn btn-primary">Zapisz zmiany</button>
+    </form>
+  </body>
+</html>

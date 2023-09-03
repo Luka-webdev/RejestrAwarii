@@ -21,7 +21,7 @@ class AwariaForm(forms.ModelForm):
 
     def clean(self):
         dane = super().clean()
-        print(dane)
+
         if dane['status'] == "W toku" and (dane['naprawił'] != "" or dane['uwagi'] != ""):
             raise ValidationError(
                 "Jeżeli pole 'Status' ma wartość 'W toku' to pola 'Naprawił' i 'Uwagi' muszą być puste.")

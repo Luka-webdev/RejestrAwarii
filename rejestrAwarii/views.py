@@ -21,3 +21,15 @@ def nowaAwaria(request):
 def wToku(request):
     wpisy = Awaria.objects.all()
     return render(request, 'rejestrAwarii/wToku.html', {'wpisy': wpisy})
+
+
+def edycjaWpisu(request, pk):
+    wpis = Awaria.objects.get(id=pk)
+    if request.method != 'POST':
+        form = AwariaForm(instance=wpis)
+    else:
+        form = AwariaForm(instance=wpis, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('wToku')
+    return render(request, 'rejestrAwarii/edycjaWpisu.html', {'wpis': wpis, 'form': form})
