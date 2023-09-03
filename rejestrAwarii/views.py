@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from . models import Awaria
-from . forms import AwariaForm
+from . forms import AwariaForm, Filtrowanie
 
 
 def ekranPowitalny(request):
@@ -20,7 +20,15 @@ def nowaAwaria(request):
 
 def wToku(request):
     wpisy = Awaria.objects.filter(status="W toku")
-    return render(request, 'rejestrAwarii/wToku.html', {'wpisy': wpisy})
+    maszyna = None
+    if request.method == "POST":
+        form = Filtrowanie(request.POST)
+        maszyna = request.POST['maszyna']
+        if form.is_valid():
+            pass
+    else:
+        form = Filtrowanie()
+    return render(request, 'rejestrAwarii/wToku.html', {'wpisy': wpisy, 'form': form, 'maszyna': maszyna})
 
 
 def edycjaWpisu(request, pk):

@@ -25,3 +25,21 @@ class AwariaForm(forms.ModelForm):
         if dane['status'] == "W toku" and (dane['naprawił'] != "" or dane['uwagi'] != ""):
             raise ValidationError(
                 "Jeżeli pole 'Status' ma wartość 'W toku' to pola 'Naprawił' i 'Uwagi' muszą być puste.")
+
+
+Maszyny = [
+    ("Tp3", "TruPunch 3000"),
+    ("Tp4", "TruPunch 4000"),
+    ("Tp5", "TruPunch 5000"),
+    ("Kimla", "Laser Kimla"),
+    ("HSG", "Laser HSG"),
+    ("M1", "Durma M1"),
+    ("M2", "Durma M2"),
+    ("Cma", "Cma"),
+    ("Crippa", "Giętarka Crippa"),
+    ("Adr", 'Durma Adr'),
+]
+
+
+class Filtrowanie(forms.Form):
+    maszyna = forms.ChoiceField(choices=Maszyny)
