@@ -70,11 +70,32 @@
             >
           </td>
         </tr>
+        {% elif wszystkie == "on" %}
+        <tr>
+          <td>{{wpis.maszyna}}</td>
+          <td>{{wpis.opis_usterki}}</td>
+          <td>{{wpis.zgłaszający}}</td>
+          <td>{{wpis.data}}</td>
+          <td>{{wpis.stopień_alertu}}</td>
+          <td>{{wpis.status}}</td>
+          <td>
+            <a
+              href="{% url 'edycjaWpisu' pk=wpis.id %}"
+              class="badge text-bg-danger link-underline link-underline-opacity-0"
+              >Edytuj</a
+            >
+          </td>
+        </tr>
+
         {% endif %} {% endfor %}
       </tbody>
     </table>
-    <button type="button" class="btn btn-warning m-3">
-      <a href="{% url 'ekranPowitalny' %}">Powrót</a>
+    <button type="button" class="btn btn-warning m-3 fw-bold">
+      <a
+        href="{% url 'ekranPowitalny' %}"
+        class="link-underline link-underline-opacity-0"
+        >Powrót</a
+      >
     </button>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

@@ -42,4 +42,5 @@ Maszyny = [
 
 
 class Filtrowanie(forms.Form):
+    wszystkie = forms.BooleanField(required=False,label="Pokaż wszystkie")
     maszyna = forms.ChoiceField(choices=Maszyny)

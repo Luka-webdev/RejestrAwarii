@@ -42,8 +42,12 @@
         {% endfor %}
       </tbody>
     </table>
-    <button type="button" class="btn btn-warning">
-      <a href="{% url 'ekranPowitalny' %}">Powrót</a>
+    <button type="button" class="btn btn-warning fw-bold">
+      <a
+        href="{% url 'ekranPowitalny' %}"
+        class="link-underline link-underline-opacity-0"
+        >Powrót</a
+      >
     </button>
   </body>
 </html>

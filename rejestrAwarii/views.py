@@ -21,14 +21,22 @@ def nowaAwaria(request):
 def wToku(request):
     wpisy = Awaria.objects.filter(status="W toku")
     maszyna = None
+    wszystkie = None
     if request.method == "POST":
         form = Filtrowanie(request.POST)
         maszyna = request.POST['maszyna']
+        wszystkie = request.POST.get('wszystkie')
         if form.is_valid():
             pass
     else:
         form = Filtrowanie()
-    return render(request, 'rejestrAwarii/wToku.html', {'wpisy': wpisy, 'form': form, 'maszyna': maszyna})
+    context = {
+        'wpisy': wpisy,
+        'form': form,
+        'maszyna': maszyna,
+        'wszystkie': wszystkie
+    }
+    return render(request, 'rejestrAwarii/wToku.html', context)
 
 
 def edycjaWpisu(request, pk):
