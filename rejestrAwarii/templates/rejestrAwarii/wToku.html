@@ -32,11 +32,24 @@
           class="accordion-collapse collapse show"
           data-bs-parent="#accordionExample"
         >
-          <div class="accordion-body">
+          <div class="accordion-body position-relative">
             <form method="POST">
               {% csrf_token %}{{form.as_p}}
-              <button name="submit" class="btn btn-danger">Filtruj</button>
+              <button type="submit" class="btn btn-success">Filtruj</button>
             </form>
+            <div class="dropdown position-absolute top-0 end-0 m-2">
+              <button
+                class="btn btn-secondary dropdown-toggle bg-danger"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Uwaga
+              </button>
+              <ul class="dropdown-menu p-1 bg-danger-subtle">
+                <li>Poszczególnych kryteriów używaj pojedynczo.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -54,7 +67,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for wpis in wpisy %} {% if wpis.maszyna == maszyna %}
+        {% for wpis in dane %}
         <tr>
           <td>{{wpis.maszyna}}</td>
           <td>{{wpis.opis_usterki}}</td>
@@ -70,24 +83,7 @@
             >
           </td>
         </tr>
-        {% elif wszystkie == "on" %}
-        <tr>
-          <td>{{wpis.maszyna}}</td>
-          <td>{{wpis.opis_usterki}}</td>
-          <td>{{wpis.zgłaszający}}</td>
-          <td>{{wpis.data}}</td>
-          <td>{{wpis.stopień_alertu}}</td>
-          <td>{{wpis.status}}</td>
-          <td>
-            <a
-              href="{% url 'edycjaWpisu' pk=wpis.id %}"
-              class="badge text-bg-danger link-underline link-underline-opacity-0"
-              >Edytuj</a
-            >
-          </td>
-        </tr>
-
-        {% endif %} {% endfor %}
+        {% endfor %}
       </tbody>
     </table>
     <button type="button" class="btn btn-warning m-3 fw-bold">

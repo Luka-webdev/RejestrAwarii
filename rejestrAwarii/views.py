@@ -19,22 +19,36 @@ def nowaAwaria(request):
 
 
 def wToku(request):
-    wpisy = Awaria.objects.filter(status="W toku")
-    maszyna = None
+    wybranaMaszyna = None
     wszystkie = None
+    dane = None
+    wybranyZgłaszający = None
+    wybranyAlert = None
     if request.method == "POST":
         form = Filtrowanie(request.POST)
-        maszyna = request.POST['maszyna']
+        wybranaMaszyna = request.POST['maszyna']
         wszystkie = request.POST.get('wszystkie')
+        wybranyZgłaszający = request.POST.get('zgłaszający')
+        wybranyAlert = request.POST.get('stopień_alertu')
+        if wszystkie == "on":
+            dane = Awaria.objects.filter(status="W toku")
+        else:
+            if wybranaMaszyna != "":
+                dane = Awaria.objects.filter(
+                    status="W toku", maszyna=wybranaMaszyna)
+            if wybranyZgłaszający != "":
+                dane = Awaria.objects.filter(
+                    status="W toku", zgłaszający=wybranyZgłaszający)
+            if wybranyAlert != "":
+                dane = Awaria.objects.filter(
+                    status="W toku", stopień_alertu=wybranyAlert)
         if form.is_valid():
             pass
     else:
         form = Filtrowanie()
     context = {
-        'wpisy': wpisy,
         'form': form,
-        'maszyna': maszyna,
-        'wszystkie': wszystkie
+        'dane': dane
     }
     return render(request, 'rejestrAwarii/wToku.html', context)
 

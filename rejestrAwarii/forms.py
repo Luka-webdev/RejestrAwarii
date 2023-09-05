@@ -28,6 +28,7 @@ class AwariaForm(forms.ModelForm):
 
 
 Maszyny = [
+    ("", "---"),
     ("Tp3", "TruPunch 3000"),
     ("Tp4", "TruPunch 4000"),
     ("Tp5", "TruPunch 5000"),
@@ -39,8 +40,16 @@ Maszyny = [
     ("Crippa", "Giętarka Crippa"),
     ("Adr", 'Durma Adr'),
 ]
+Alerty = [
+    ("", "---"),
+    ("1", "1"),
+    ("2", "2"),
+    ("3", "3")
+]
 
 
 class Filtrowanie(forms.Form):
-    wszystkie = forms.BooleanField(required=False,label="Pokaż wszystkie")
-    maszyna = forms.ChoiceField(choices=Maszyny)
+    wszystkie = forms.BooleanField(required=False, label="Pokaż wszystkie")
+    maszyna = forms.ChoiceField(choices=Maszyny, required=False)
+    zgłaszający = forms.CharField(required=False,)
+    stopień_alertu = forms.ChoiceField(required=False, choices=Alerty)
