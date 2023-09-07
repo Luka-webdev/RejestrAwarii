@@ -21,7 +21,7 @@ def nowaAwaria(request):
 def wToku(request):
     wybranaMaszyna = None
     wszystkie = None
-    dane = None
+    dane = Awaria.objects.filter(status="W toku")
     wybranyZgłaszający = None
     wybranyAlert = None
     if request.method == "POST":

@@ -13,7 +13,7 @@
     />
     <!-- <link rel="stylesheet" href="{% static 'css/wToku.css' %}" /> -->
   </head>
-  <body class="bg-primary p-2">
+  <body class="bg-primary p-2 position-relative h-100">
     <table class="table">
       <thead>
         <tr>
@@ -42,12 +42,12 @@
         {% endfor %}
       </tbody>
     </table>
-    <button type="button" class="btn btn-warning fw-bold">
-      <a
-        href="{% url 'ekranPowitalny' %}"
-        class="link-underline link-underline-opacity-0"
-        >Powrót</a
-      >
-    </button>
+    <a
+      class="btn btn-warning m-2 position-absolute start-0 bottom-0 fw-bold"
+      role="button"
+      aria-disabled="true"
+      href="{% url 'ekranPowitalny' %}"
+      >Powrót</a
+    >
   </body>
 </html>

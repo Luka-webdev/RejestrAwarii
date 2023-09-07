@@ -15,32 +15,32 @@
   </head>
   <body class="bg-primary d-flex flex-column align-items-center">
     <header class="text-center">
-      <h1>
+      <h1 class="fw-bold">
         Rejestr <s><span>awarii</span></s> wyzwań
       </h1>
     </header>
     <section class="d-flex flex-column">
-      <button class="btn btn-danger m-1">
-        <a
-          href="{% url 'nowaAwaria' %}"
-          class="link-underline link-underline-opacity-0 text-dark"
-          >Nowe zgłoszenie</a
-        >
-      </button>
-      <button class="btn btn-warning m-1">
-        <a
-          href="{% url 'wToku' %}"
-          class="link-underline link-underline-opacity-0 text-dark"
-          >W toku</a
-        >
-      </button>
-      <button class="btn btn-success m-1">
-        <a
-          href="{% url 'zakończone' %}"
-          class="link-underline link-underline-opacity-0 text-dark"
-          >Zakończone</a
-        >
-      </button>
+      <a
+        class="btn btn-danger"
+        role="button"
+        aria-disabled="true"
+        href="{% url 'nowaAwaria' %}"
+        >Nowe zgłoszenie</a
+      >
+      <a
+        class="btn btn-warning my-2"
+        role="button"
+        aria-disabled="true"
+        href="{% url 'wToku' %}"
+        >W toku</a
+      >
+      <a
+        class="btn btn-success"
+        role="button"
+        aria-disabled="true"
+        href="{% url 'zakończone' %}"
+        >Zakończone</a
+      >
     </section>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
