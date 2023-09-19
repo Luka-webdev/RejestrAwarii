@@ -11,7 +11,6 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{% static 'css/wToku.css' %}" />
   </head>
   <body class="bg-primary position-relative p-2 h-100">
     <div class="accordion my-3" id="accordionExample">
@@ -35,7 +34,14 @@
         >
           <div class="accordion-body position-relative">
             <form method="POST" class="d-flex justify-content-around">
-              {% csrf_token %}{{form.as_p}}
+              {% csrf_token %}
+              <!-- wyświetlenie niektórych pól  -->
+              {% for field in form %} {% if field.help_text == " " %}
+              <p></p>
+              {% else %}
+              <p>{{ field.label_tag }} {{ field }}</p>
+              {% endif %} {% endfor %}
+              <!-- koniec formularza  -->
               <button
                 type="submit"
                 class="btn btn-success position-absolute bottom-0 start-0 m-2"
@@ -64,10 +70,10 @@
       <thead>
         <tr>
           <th scope="col">Maszyna</th>
-          <th scope="col">Opis_usterki</th>
+          <th scope="col">Opis usterki</th>
           <th scope="col">Zgłaszający</th>
           <th scope="col">Data</th>
-          <th scope="col">Stopień_alertu</th>
+          <th scope="col">Stopień alertu</th>
           <th scope="col">Status</th>
           <th scope="col"></th>
         </tr>

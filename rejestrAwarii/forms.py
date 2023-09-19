@@ -52,4 +52,5 @@ class Filtrowanie(forms.Form):
     wszystkie = forms.BooleanField(required=False, label="Pokaż wszystkie")
     maszyna = forms.ChoiceField(choices=Maszyny, required=False)
     zgłaszający = forms.CharField(required=False,)
-    stopień_alertu = forms.ChoiceField(required=False, choices=Alerty)
+    stopień_alertu = forms.ChoiceField(choices=Alerty, required=False)
+    naprawił = forms.CharField(required=False, help_text=' ')

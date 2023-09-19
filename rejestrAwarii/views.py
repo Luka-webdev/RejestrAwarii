@@ -66,5 +66,40 @@ def edycjaWpisu(request, pk):
 
 
 def zakonczone(request):
-    wpisy = Awaria.objects.filter(status="Zakończone")
-    return render(request, 'rejestrAwarii/zakończone.html', {'wpisy': wpisy})
+    wybranaMaszyna = None
+    wszystkie = None
+    dane = Awaria.objects.filter(status="Zakończone")
+    wybranyZgłaszający = None
+    wybranyAlert = None
+    ktoNaprawił = None
+    if request.method == "POST":
+        form = Filtrowanie(request.POST)
+        wybranaMaszyna = request.POST['maszyna']
+        wszystkie = request.POST.get('wszystkie')
+        wybranyZgłaszający = request.POST.get('zgłaszający')
+        wybranyAlert = request.POST.get('stopień_alertu')
+        ktoNaprawił = request.POST.get('naprawił')
+        if wszystkie == "on":
+            dane = Awaria.objects.filter(status="Zakończone")
+        else:
+            if wybranaMaszyna != "":
+                dane = Awaria.objects.filter(
+                    status="Zakończone", maszyna=wybranaMaszyna)
+            if wybranyZgłaszający != "":
+                dane = Awaria.objects.filter(
+                    status="Zakończone", zgłaszający=wybranyZgłaszający)
+            if wybranyAlert != "":
+                dane = Awaria.objects.filter(
+                    status="Zakończone", stopień_alertu=wybranyAlert)
+            if ktoNaprawił != "":
+                dane = Awaria.objects.filter(
+                    status="Zakończone", naprawił=ktoNaprawił)
+        if form.is_valid():
+            pass
+    else:
+        form = Filtrowanie()
+    context = {
+        'form': form,
+        'dane': dane
+    }
+    return render(request, 'rejestrAwarii/zakończone.html', context)

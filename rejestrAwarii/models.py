@@ -31,5 +31,5 @@ class Awaria(models.Model):
     stopień_alertu = models.CharField(max_length=50, choices=Alerty)
     status = models.CharField(
         choices=Statusy, default="W toku", max_length=20)
-    naprawił = models.CharField(max_length=40)
+    naprawił = models.CharField(max_length=40,)
     uwagi = models.TextField()
